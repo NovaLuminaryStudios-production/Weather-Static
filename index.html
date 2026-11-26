@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WEATHER STATIC STUDIO</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">WS</div><div><b>WEATHER STATIC</b><span>STUDIO</span></div></div>
+    <div class="side-label">WORKSPACE</div>
+    <button class="nav active" data-page="home">⌂ <span>Home</span></button>
+    <button class="nav" data-page="generator">✦ <span>AI Generator</span><i class="soon">BETA</i></button>
+    <button class="nav" data-page="studio">▤ <span>Music Studio</span></button>
+    <div class="side-bottom"><div class="status-dot"></div><span>LOCAL STUDIO</span><small>V 0.1</small></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><span class="eyebrow">YOUR CREATIVE SPACE</span><h1 id="page-title">Good evening.</h1></div><div class="top-right"><span class="pill"><i></i> AUDIO ENGINE READY</span><div class="avatar">WS</div></div></header>
+    <section class="page active-page" id="home">
+      <div class="hero">
+        <div class="hero-copy"><span class="eyebrow purple">MAKE SOMETHING THAT FEELS</span><h2>Your sound.<br><em>Your story.</em></h2><p>A space to shape ideas into songs. Generate inspiration, build arrangements, and record your own voice.</p><div class="hero-actions"><button class="primary" data-go="studio">Open Music Studio <b>↗</b></button><button class="secondary" data-go="generator">Explore AI Generator</button></div></div>
+        <div class="hero-art"><div class="orbit orbit1"></div><div class="orbit orbit2"></div><div class="orb-core">WS<span>♪</span></div><div class="wave-bars"></div><span class="art-caption">FIND YOUR FREQUENCY</span></div>
+      </div>
+      <div class="section-head"><div><span class="eyebrow">GET STARTED</span><h3>Make your next track</h3></div><span class="muted">Choose a workspace</span></div>
+      <div class="feature-grid">
+        <article class="feature-card" data-go="generator"><div class="feature-icon violet">✦</div><span class="card-kicker">IDEA TO AUDIO</span><h3>AI Music Generator</h3><p>Describe a mood, genre and arrangement to create a starting point for your next song.</p><div class="card-foot">OPEN GENERATOR <b>↗</b></div></article>
+        <article class="feature-card" data-go="studio"><div class="feature-icon blue">▤</div><span class="card-kicker">RECORD & ARRANGE</span><h3>Music Studio</h3><p>Try the built-in instrument, capture microphone audio and build your own ideas.</p><div class="card-foot">OPEN STUDIO <b>↗</b></div></article>
+      </div>
+      <div class="notice"><span>✧</span><div><b>Built for independent artists</b><p>This first version runs in your browser. AI song generation needs an external provider connection, which we'll add separately.</p></div></div>
+    </section>
+    <section class="page" id="generator">
+      <div class="page-intro"><span class="eyebrow purple">IDEA TO AUDIO</span><h2>AI Music Generator</h2><p>Turn a description into a musical direction. Your prompt is ready to send once an AI provider is connected.</p></div>
+      <div class="generator-layout">
+        <div class="panel prompt-panel"><label for="prompt">DESCRIBE YOUR SONG</label><textarea id="prompt" rows="7" placeholder="A nostalgic acoustic indie song with fingerpicked guitar, warm bass, gentle drums..."></textarea>
+          <div class="two-fields"><div><label>GENRE</label><select id="genre"><option>Acoustic Indie</option><option>Alternative Rock</option><option>Indie Folk</option><option>Pop Rock</option><option>Cinematic</option><option>Ambient</option></select></div><div><label>MOOD</label><select id="mood"><option>Nostalgic</option><option>Bittersweet</option><option>Hopeful</option><option>Melancholic</option><option>Dreamy</option><option>Energetic</option></select></div></div>
+          <div class="two-fields"><div><label>TEMPO</label><div class="input-suffix"><input id="bpm" type="number" min="40" max="220" value="76"><span>BPM</span></div></div><div><label>OUTPUT</label><select id="output"><option>Instrumental</option><option>Song with AI vocals</option></select></div></div>
+          <button class="primary full" id="generate">Prepare generation request <b>✦</b></button><p class="micro">No paid generation is triggered. This prepares a provider-ready prompt.</p>
+        </div>
+        <div class="panel side-info"><div class="mini-wave">〰</div><h3>From a feeling to a track.</h3><p>When connected to a music-generation API, this page can submit your prompt and display generated versions here.</p><div class="provider-state"><span class="status-dot amber"></span><div><b>AI provider not connected</b><small>External service connection required</small></div></div><div id="request-output" class="request-output">Your prepared request will appear here.</div><button class="secondary full" id="copy-prompt">Copy prompt</button></div>
+      </div>
+    </section>
+    <section class="page" id="studio">
+      <div class="page-intro"><span class="eyebrow purple">RECORD & ARRANGE</span><h2>Music Studio</h2><p>A lightweight browser studio to test sounds and capture ideas. Use headphones when recording.</p></div>
+      <div class="studio-toolbar panel"><div><span class="eyebrow">SESSION</span><b id="session-name">Untitled Session</b></div><div class="transport"><button id="play" class="transport-btn">▶</button><button id="stop" class="transport-btn">■</button><span id="clock">00:00</span></div><div class="tempo-box"><label for="studio-bpm">TEMPO</label><input id="studio-bpm" type="number" value="76" min="40" max="220"><small>BPM</small></div></div>
+      <div class="studio-grid">
+        <div class="panel instrument-panel"><div class="panel-heading"><div><span class="eyebrow">INSTRUMENT</span><h3>Soft Keys</h3></div><span class="live-tag">LIVE AUDIO</span></div><p class="muted">Tap a key or use your computer keyboard (A W S E D F T G Y H U J).</p><div class="keyboard" id="keyboard"></div><div class="key-hint">C4 — C5 · SOFT SINE TONE</div></div>
+        <div class="panel record-panel"><div class="panel-heading"><div><span class="eyebrow">VOCAL / AUDIO</span><h3>Record an idea</h3></div><div class="mic-icon">●</div></div><p class="muted">Capture your microphone as a browser audio recording.</p><div class="record-visual"><div class="record-circle" id="record-indicator">●</div><div><b id="record-state">Ready to record</b><small id="record-time">00:00</small></div></div><div class="record-actions"><button class="primary" id="record">● Start recording</button><button class="secondary" id="finish-record" disabled>Finish</button></div><audio id="playback" controls hidden></audio><a id="download-recording" class="download-link" hidden download="weather-static-take.webm">Download recording ↗</a><p class="micro">Microphone permission is requested only when you press Start recording.</p></div>
+      </div>
+      <div class="panel timeline-panel"><div class="panel-heading"><div><span class="eyebrow">ARRANGEMENT</span><h3>Session timeline</h3></div><span class="muted">Starter workspace</span></div><div class="timeline-ruler"><span>00:00</span><span>00:15</span><span>00:30</span><span>00:45</span><span>01:00</span><span>01:15</span></div><div class="track"><div class="track-name">KEYS <small>Instrument</small></div><div class="track-lane"><div class="clip keys-clip">Soft Keys · play live</div></div></div><div class="track"><div class="track-name">VOCALS <small>Microphone</small></div><div class="track-lane" id="vocal-lane"><div class="empty-clip">Your recording will appear here</div></div></div></div>
+      <div class="notice"><span>ⓘ</span><div><b>Early studio build</b><p>This version records microphone audio and plays a simple keyboard. A full multitrack editor, instrument library, effects and WAV export are planned next.</p></div></div>
+    </section>
+    <footer>WEATHER STATIC STUDIO <span>MAKE MUSIC THAT STAYS WITH YOU.</span></footer>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body></html>
