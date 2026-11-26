@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b10">
+  <title>WEATHER STATIC STUDIO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" data-page="home"><span class="brand-mark">W<span>·</span>S</span><span><b>WEATHER STATIC</b><small>STUDIO</small></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav active" data-page="home">⌂ <span>Overview</span></button>
+      <button class="nav" data-page="generator">✦ <span>AI Song Generator</span></button>
+      <button class="nav" data-page="studio">▤ <span>Music Studio</span></button>
+      <button class="nav" data-page="library">♫ <span>My Library</span></button>
+      <div class="side-bottom"><span class="live-dot"></span> PERSONAL WORKSPACE <small>v1.0 · LOCAL PROJECTS</small></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><div><div class="eyebrow">YOUR PRIVATE CREATIVE SPACE</div><h1 id="page-title">Make something that stays.</h1></div><div class="top-right"><span class="status-pill"><i></i> STUDIO READY</span><span class="avatar">WS</span></div></header>
+
+      <section class="page active-page" id="home">
+        <div class="hero">
+          <div class="hero-copy"><div class="eyebrow">WELCOME TO YOUR STUDIO</div><h2>Turn a feeling<br>into a <em>song.</em></h2><p>Write a thought, bring your lyrics, or start with a sound. Let the studio take it from there.</p><div class="hero-actions"><button class="primary" data-go="generator">✦ Generate a song</button><button class="secondary" data-go="studio">Open music studio ↗</button></div></div>
+          <div class="orb-wrap"><div class="orb"></div><div class="orb-ring"></div><div class="orb-caption">SOUND / FEELING / MEMORY</div></div>
+        </div>
+        <div class="section-head"><div><div class="eyebrow">YOUR WORKSPACE</div><h2>Everything in one place</h2></div></div>
+        <div class="feature-grid">
+          <button class="feature-card" data-go="generator"><span class="feature-icon">✦</span><b>AI Song Generator</b><p>Generate complete songs with vocals or instrumentals from a description or your own lyrics.</p><span class="card-link">CREATE A SONG ↗</span></button>
+          <button class="feature-card" data-go="studio"><span class="feature-icon">▤</span><b>Music Studio</b><p>Record vocals, add audio files, layer tracks, adjust levels and play your mix.</p><span class="card-link">OPEN STUDIO ↗</span></button>
+          <button class="feature-card" data-go="library"><span class="feature-icon">♫</span><b>Your Library</b><p>Keep track of songs generated in this browser and return to them whenever you like.</p><span class="card-link">VIEW LIBRARY ↗</span></button>
+        </div>
+        <div class="notice"><b>Personal workspace</b><span>Your projects and library are stored in this browser. Download important songs and project files as backups.</span></div>
+      </section>
+
+      <section class="page" id="generator">
+        <div class="page-intro"><div class="eyebrow">AI MUSIC / GENERATION</div><h2>Give the feeling a sound.</h2><p>Describe your song in one sentence, or switch to custom mode and bring your own lyrics.</p></div>
+        <div class="generator-layout">
+          <div class="panel form-panel">
+            <div class="field"><label>GENERATION MODE</label><div class="segmented"><button class="seg active" data-mode="simple">Simple idea</button><button class="seg" data-mode="custom">Custom lyrics</button></div></div>
+            <div class="field" id="idea-field"><label for="idea">WHAT SHOULD THE SONG BE ABOUT?</label><textarea id="idea" rows="4" maxlength="600" placeholder="A nostalgic acoustic song about growing up, old friendships, and wishing you could return to one summer..."></textarea></div>
+            <div id="custom-fields" hidden>
+              <div class="field"><label for="style">STYLE / SOUND</label><textarea id="style" rows="2" maxlength="600" placeholder="English, warm male vocal, acoustic indie-folk, 82 BPM, fingerpicked guitar, soft drums"></textarea></div>
+              <div class="field"><label for="lyrics">YOUR LYRICS</label><textarea id="lyrics" rows="8" maxlength="3000" placeholder="[Verse]\nWrite your lyrics here...\n\n[Chorus]\nYour chorus goes here..."></textarea><small>Use section labels such as [Verse], [Chorus], [Bridge] on their own lines.</small></div>
+            </div>
+            <div class="two-fields">
+              <div class="field"><label for="length">SONG LENGTH</label><select id="length"><option value="60">1 minute</option><option value="90">1 minute 30 seconds</option><option value="120" selected>2 minutes</option><option value="150">2 minutes 30 seconds</option><option value="180">3 minutes</option><option value="240">4 minutes</option></select></div>
+              <div class="field"><label for="takes">VARIATIONS</label><select id="takes"><option value="1" selected>1 take</option><option value="2">2 takes</option></select></div>
+            </div>
+            <label class="check-row"><input type="checkbox" id="instrumental"><span><b>Instrumental only</b><small>No singing or lyrics</small></span></label>
+            <button class="primary full" id="generate">✦ Generate my song</button>
+            <p class="fineprint">Generation uses provider credits. Review the estimated cost on the provider's site before submitting. Never share your API key here.</p>
+          </div>
+          <div class="panel result-panel">
+            <div class="result-top"><div><div class="eyebrow">GENERATION DESK</div><h3>Your next track</h3></div><span class="status-pill"><i></i> READY</span></div>
+            <div class="result-visual"><div class="wave" id="wave"></div><div class="result-center"><span>✦</span><b id="result-state">Waiting for inspiration</b><small id="result-detail">Your generated songs will appear here.</small></div></div>
+            <div id="results" class="results"><div class="empty">No generations yet. Your first song starts with an idea.</div></div>
+            <div class="provider-box"><b>Connection setup</b><p>Connect your private backend URL below. The API key stays on the backend, never in this website.</p><label for="api-url">BACKEND URL</label><input id="api-url" placeholder="https://your-worker.workers.dev"><button class="secondary small" id="save-api">Save connection</button><small id="api-state">Not connected yet</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="studio">
+        <div class="page-intro"><div class="eyebrow">PRODUCTION / MIXING</div><h2>Build your arrangement.</h2><p>Add generated songs, recordings or audio files. Each file becomes its own mixer track.</p></div>
+        <div class="studio-toolbar panel"><div><span class="eyebrow">SESSION</span><b id="track-count">0 TRACKS</b></div><div class="toolbar-actions"><label class="secondary file-button">＋ Add audio<input id="audio-files" type="file" accept="audio/*" multiple hidden></label><button class="secondary" id="record-vocal">● Record vocal</button><button class="secondary" id="stop-record" disabled>Stop recording</button><button class="primary" id="play-all">▶ Play all</button></div></div>
+        <div class="panel tracks-panel"><div class="track-header"><span>TRACK</span><span>LEVEL / CONTROLS</span></div><div id="tracks"><div class="empty">Your timeline is empty. Add an audio file or record a vocal take to begin.</div></div></div>
+        <div class="panel master-panel"><div><div class="eyebrow">MASTER OUTPUT</div><b>Session mix</b></div><div class="master-controls"><label>MASTER VOLUME <input id="master-volume" type="range" min="0" max="1" step=".01" value=".85"></label><button class="secondary" id="export-project">Save project list</button></div></div>
+        <div class="notice"><b>Studio note</b><span>This first release is a practical browser mixer: tracks can play together with individual volume and mute controls. Full waveform cutting, MIDI editing and stem separation are future upgrades.</span></div>
+      </section>
+
+      <section class="page" id="library">
+        <div class="page-intro"><div class="eyebrow">YOUR COLLECTION</div><h2>Songs worth keeping.</h2><p>Generated takes saved in this browser.</p></div>
+        <div class="panel library-panel"><div class="library-head"><b>MY SONGS</b><span id="library-count">0 TRACKS</span></div><div id="library-list"><div class="empty">Your library is waiting for its first song.</div></div></div>
+      </section>
+      <footer>WEATHER STATIC STUDIO <span>MAKE SOMETHING THAT STAYS.</span></footer>
+    </main>
+  </div>
+  <div id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
